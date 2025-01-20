@@ -1,0 +1,29 @@
+# Абсолютно ничего не поняла. Метод dbscan
+f = open('27-1b.txt')
+s = f.readline()
+a = [list(map(float, i.replace(',', '.').split())) for i in f]
+b = [[], [], []]
+for k in range(3):
+    b[k].append(a.pop(0))
+    for j in b[k]:
+        for i in range(len(a)):
+            if (a[i]!='*') and (dist(j, a[i]) < 0.1):
+                b[k].append(a[i])
+                a[i] = '*'
+    a = [i for i in a if i!='*']
+
+from turtle import *
+tracer(0)
+screensize(20000, 20000)
+pu()
+m = 50
+for i in range(-50, 50):
+    goto(i*m, 0)
+    dot(4)
+    goto(0, i*m)
+    dot(4)
+for i in b[1]:
+    x, y = i
+    goto(x*m, y*m)
+    dot(4)
+done()
